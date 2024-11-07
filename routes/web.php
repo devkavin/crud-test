@@ -17,4 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/teams', [App\Http\Controllers\TeamController::class, 'index'])->name('teams.index');
+Route::get('/getTeams', [App\Http\Controllers\TeamController::class, 'getTeams'])->name('teams.getTeams');
+
+require __DIR__ . '/auth.php';
