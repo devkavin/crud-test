@@ -27,14 +27,14 @@ export default function Teams( { teams }: { teams: any } ) {
         <AuthenticatedLayout
             header={
                 <div
-                className="flex items-center justify-between w-full"
+                    className="flex items-center justify-between w-full"
                 >
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
                     Teams
                 </h2>
-             <PrimaryButton onClick={fetchTeams} disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Fetch Teams'}
-                </PrimaryButton>
+                    <PrimaryButton onClick={fetchTeams} disabled={isLoading}>
+                        {isLoading ? 'Loading...' : 'Fetch Teams'}
+                    </PrimaryButton>
                 </div>
             }
         >
