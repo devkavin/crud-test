@@ -33,6 +33,12 @@ export default function Authenticated({
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('teams.index')}
+                                    active={route().current('teams.index')}
+                                >
+                                    Teams
+                                </NavLink>
                             </div>
                         </div>
 
@@ -136,6 +142,12 @@ export default function Authenticated({
                             active={route().current('dashboard')}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('teams.index')}
+                            active={route().current('teams.index')}
+                        >
+                            Teams
                         </ResponsiveNavLink>
                     </div>
 
