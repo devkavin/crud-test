@@ -18,6 +18,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/teams', [App\Http\Controllers\TeamController::class, 'index'])->name('teams.index');
+Route::get('/teams/create', [App\Http\Controllers\TeamController::class, 'create'])->name('teams.create');
+Route::post('/teams', [App\Http\Controllers\TeamController::class, 'store'])->name('teams.store');
+Route::get('/teams/{team}', [App\Http\Controllers\TeamController::class, 'show'])->name('teams.show');
+Route::get('/teams/{team}/edit', [App\Http\Controllers\TeamController::class, 'edit'])->name('teams.edit');
+Route::post('/teams/{team}', [App\Http\Controllers\TeamController::class, 'update'])->name('teams.update');
+Route::delete('/teams/{team}', [App\Http\Controllers\TeamController::class, 'destroy'])->name('teams.destroy');
+
 Route::get('/getTeams', [App\Http\Controllers\TeamController::class, 'getTeams'])->name('teams.getTeams');
+Route::get('/pushUpdatedTeams', [App\Http\Controllers\TeamController::class, 'pushUpdatedTeams'])->name('teams.pushUpdatedTeams');
+
 
 require __DIR__ . '/auth.php';

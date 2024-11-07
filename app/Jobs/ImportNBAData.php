@@ -56,7 +56,6 @@ class ImportNBAData implements ShouldQueue
             ];
             // send data to teams.index
             // return redirect()->route('teams.index')->with('data', $teamData);
-
             Team::updateOrCreate(['id' => $team['id']], $teamData);
         }
     }

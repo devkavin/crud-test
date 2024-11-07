@@ -9,16 +9,30 @@
 </head>
 <body>
     <h1>Teams Test</h1>
-    <p>Teams here</p>
+    <button>
+        <a href="{{ route('teams.create') }}">Create Team</a>
+    </button>
     <ul>
         @if (count($teams) === 0)
             <li>No teams</li>
             <button>
                 <a href="{{ route('teams.getTeams') }}">Fetch Teams</a>
             </button>
+            @else
+            <div class="row">
+                <p>Push Teams:</p>
+                <button>
+                    <a
+                    href="{{ route('teams.pushUpdatedTeams') }}"
+                    >
+                    Push Teams
+                </a>
+                </button>
+            </div>
         @endif
+        <p>Teams here</p>
         @foreach ($teams as $team)
-            <li>{{ $team->name }}</li>
+            <li>Name: <a href="{{ route('teams.show', ['team' => $team->id]) }}">{{ $team->name }}</a></li>
         @endforeach
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\NBADataImported;
+use App\Listeners\sendUpdatedTeams;
+use Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(NBADataImported::class, sendUpdatedTeams::class);
     }
 }
