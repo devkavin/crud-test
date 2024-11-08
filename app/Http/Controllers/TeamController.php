@@ -20,48 +20,24 @@ class TeamController extends Controller
      */
     public function index()
     {
-        // $teamsArray = [
-        //     [
-        //         'conference' => 'Eastern',
-        //         'division' => 'Atlantic',
-        //         'city' => 'Boston',
-        //         'name' => 'Celtics',
-        //         'full_name' => 'Boston Celtics',
-        //         'abbreviation' => 'BOS',
-        //     ],
-        //     [
-        //         'conference' => 'Eastern',
-        //         'division' => 'Central',
-        //         'city' => 'Chicago',
-        //         'name' => 'Bulls',
-        //         'full_name' => 'Chicago Bulls',
-        //         'abbreviation' => 'CHI',
-        //     ],
-        //     [
-        //         'conference' => 'Eastern',
-        //         'division' => 'Southeast',
-        //         'city' => 'Miami',
-        //         'name' => 'Heat',
-        //         'full_name' => 'Miami Heat',
-        //         'abbreviation' => 'MIA',
-        //     ],
-        // ];
+        try {
+            $teams = Team::all();
 
-        $teams = Team::all();
-
-        return Inertia::render('Teams/Index', [
-            'teams' => $teams,
-        ]);
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with('error', $e->getMessage());
-        // }
+            return Inertia::render('Teams/Index', [
+                'teams' => $teams,
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    { }
+    {
+        return Inertia::render('Teams/Create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -94,7 +70,21 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $request->validate([
+            'conference' => 'required',
+            'division' => 'required',
+            'city' => 'required',
+            'name' => 'required',
+            'full_name' => 'required',
+            'abbreviation' => 'required',
+        ]);
+
+        try {
+            $team->update($request->all());
+            return redirect()->route('teams.index')->with('success', 'Team updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
